@@ -29,6 +29,18 @@ for i in range(0, len(p)):
     unreg[(p[i][0] // h + n // 2)][(p[i][1] // h + n // 2)][(p[i][2] // h + n // 2)][0] = p[i][3]
     unreg[(p[i][0] // h + n // 2)][(p[i][1] // h + n // 2)][(p[i][2] // h + n // 2)][1] = 1
 
+if True:
+    #Вывод массива
+    for i in range(0, n):
+        for j in range(0, n):
+            for k in range(0, n):
+                print(int(unreg[j][k][i][0]),end = " ")
+            print("")
+        print("")
+        print("")
+        print("")
+
+
 #Восстановление регулярной сетки
 def interpolate():
     for i in range(0, n):
@@ -109,40 +121,54 @@ def interpolate():
 for i in range(0, 1000):
     interpolate();
 
-#Генератор кода
-print("float f = 0;")
-for i in range(0, n-1):
-    if (i == 0):
-        print("if",end = "")
-    else:
-        print("} else if",end = "")
-    print("( (wPos[0] >=", -size/2 + i*h,") && (wPos[0] <",-size/2 + (i + 1)*h ,")){")
-    for j in range(0, n-1):
-        print("")
-        if (j == 0):
-            print("    if",end = "")
-        else:
-            print("    } else if",end = "")
-        print("( (wPos[1] >=", -size/2 + j*h,") && (wPos[1] <",-size/2 + (j + 1)*h ,")){")
-        for k in range(0, n-1):
+if True:
+    #Вывод массива
+    for i in range(0, n):
+        for j in range(0, n):
+            for k in range(0, n):
+                print(int(unreg[i][j][k][0]),end = " ")
             print("")
-            if (k == 0):
-                print("        if",end = "")
-            else:
-                print("        } else if",end = "")
-            print("((wPos[2] >=", -size/2 + k*h,") && (wPos[2] <",-size/2 + (k + 1)*h ,")){")
+        print("")
 
-            print("             f = (",int(unreg[i][j][k][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
-            print("            ",int(unreg[i+1][j][k][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
-            print("            ",int(unreg[i][j+1][k][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
-            print("            ",int(unreg[i][j][k+1][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
-            print("            ",int(unreg[i+1][j+1][k][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
-            print("            ",int(unreg[i+1][j][k+1][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
-            print("            ",int(unreg[i][j+1][k+1][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
-            print("            ",int(unreg[i+1][j+1][k+1][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,");")
-			
-        print("        }")
-    print("    }")
-print("}")
-print("return f;")
+print("")
+
+if False:
+    #Генератор кода
+    print("Код HLSL")
+    print("")
+    print("float f = 0;")
+    for i in range(0, n-1):
+        if (i == 0):
+            print("if",end = "")
+        else:
+            print("} else if",end = "")
+        print("( (wPos[0] >=", -size/2 + i*h,") && (wPos[0] <",-size/2 + (i + 1)*h ,")){")
+        for j in range(0, n-1):
+            print("")
+            if (j == 0):
+                print("    if",end = "")
+            else:
+                print("    } else if",end = "")
+            print("( (wPos[1] >=", -size/2 + j*h,") && (wPos[1] <",-size/2 + (j + 1)*h ,")){")
+            for k in range(0, n-1):
+                print("")
+                if (k == 0):
+                    print("        if",end = "")
+                else:
+                    print("        } else if",end = "")
+                print("((wPos[2] >=", -size/2 + k*h,") && (wPos[2] <",-size/2 + (k + 1)*h ,")){")
+
+                print("             f = (",int(unreg[i][j][k][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
+                print("            ",int(unreg[i+1][j][k][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
+                print("            ",int(unreg[i][j+1][k][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
+                print("            ",int(unreg[i][j][k+1][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
+                print("            ",int(unreg[i+1][j+1][k][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(",-size/2 + (k + 1)*h,"- wPos[2])/",h,"+")
+                print("            ",int(unreg[i+1][j][k+1][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(",-size/2 + (j + 1)*h,"- wPos[1])/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
+                print("            ",int(unreg[i][j+1][k+1][0]),"*(",-size/2 + (i + 1)*h,"- wPos[0])/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,"+")
+                print("            ",int(unreg[i+1][j+1][k+1][0]),"*(wPos[0] -",-size/2 + i*h,")/",h,"*(wPos[1] -",-size/2 + j*h,")/",h,"*(wPos[2] -",-size/2 + k*h,")/",h,");")
+                            
+            print("        }")
+        print("    }")
+    print("}")
+    print("return f;")
 
